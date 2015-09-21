@@ -2,7 +2,6 @@
 var readline = require('readline');
 var rl = readline.createInterface({input: process.stdin, output: process.stdout});
 var cb = require('./cb.js');
-var db;
 
 //CRUD
 function insertBook() {
@@ -58,5 +57,5 @@ function printMenu() {
   })}
 
 
-  db = cb.connect(printMenu);
+  cb.connect(printMenu);
 
