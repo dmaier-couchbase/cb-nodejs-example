@@ -6,7 +6,33 @@ var cb = require('./cb.js');
 //CRUD
 function insertBook() {
 
-	//TODO
+	rl.question("Enter the name of the book: ", function(bookName){
+		rl.question("Enter the ISBN of the book: ", function(isbn){
+			rl.question("Enter the authors of the book (comma seperated): ", function(author){
+				rl.question("Enter the total number of pages: ", function(pageCount){
+				
+					cb.bucket().insert(
+						"book::" + isbn, { 
+						'name' : bookName,
+						'isbn' : isbn,
+                                                'authors' : author.split(','),
+						'pages' : parseInt(pageCount)
+						},
+						function(err, res) {
+						
+							if (!err) { 
+								console.log("Added book: " + bookName);
+								printMenu();
+							}
+
+						}					
+					);
+
+				});
+			});
+		});
+	
+	});
 }
 
 function listBooks() {

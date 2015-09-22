@@ -4,15 +4,14 @@ var PWD = 'test';
 
 var couchbase = require('couchbase');
 var _cluster = new couchbase.Cluster('couchbase://' + HOST);
-
-var _db;
+var _bucket;
 
 
 module.exports = {
 
    connect : function(success) {
 
-     _db =  _cluster.openBucket(BUCKET, PWD, function (err) {
+     _bucket =  _cluster.openBucket(BUCKET, PWD, function (err) {
 	 
 	     if (err) {
 		     console.log('ERR: Could not connect to the bucket', err);
@@ -23,12 +22,12 @@ module.exports = {
 	     }   
      });
 
-     return _db;
+     return _bucket;
    },
 
-   db : function() {
+   bucket : function() {
        
-     return _db;	
+     return _bucket;	
    }	
 };
 
